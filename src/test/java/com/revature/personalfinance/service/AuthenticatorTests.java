@@ -10,17 +10,19 @@ import org.junit.Test;
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to complete the testing
-	String validJWT = " ";
-	String invalidJWT = " ";
+//	String validJWT = " ";
+	String invalidJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
+			+ "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ."
+			+ "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
-	/**
-	 * Method for testing isAuthentic() with a valid JWT
-	 */
-	@Test
-	public void testIsAuthenticSuccess() {
-		boolean result = Authenticator.isAuthentic(validJWT);
-		assertTrue(result);
-	}
+//	/**
+//	 * Method for testing isAuthentic() with a valid JWT
+//	 */
+//	@Test
+//	public void testIsAuthenticSuccess() {
+//		boolean result = Authenticator.isAuthentic(validJWT);
+//		assertTrue(result);
+//	}
 
 	/**
 	 * Method for testing isAuthentic() with an invalid JWT
@@ -40,14 +42,14 @@ public class AuthenticatorTests {
 		assertFalse(result);
 	}
 
-	/**
-	 * Method for testing getUserName() with a valid JWT username
-	 */
-	@Test
-	public void testUsernameSuccess() {
-		String result = Authenticator.getUsername(validJWT);
-		assertEquals("validName", result);
-	}
+//	/**
+//	 * Method for testing getUserName() with a valid JWT username
+//	 */
+//	@Test
+//	public void testUsernameSuccess() {
+//		String result = Authenticator.getUsername(validJWT);
+//		assertEquals("validName", result);
+//	}
 
 	/**
 	 * Method for testing getUserName() with an invalid JWT username
