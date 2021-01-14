@@ -1,10 +1,13 @@
-package com.revature.personalfinance.model;
+package com.revature.personalfinance.service;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import lombok.Data;
+
 @Component
 @Scope("singleton")
+@Data
 public class Authenticator {
 	
 	/**
