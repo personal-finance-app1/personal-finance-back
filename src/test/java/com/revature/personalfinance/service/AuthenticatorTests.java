@@ -3,13 +3,13 @@ package com.revature.personalfinance.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to complete the testing
+
 
 //	String validJWT = " ";
 	String invalidJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."

@@ -1,13 +1,8 @@
 package com.revature.personalfinance.service;
 
-import java.io.IOException;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -46,9 +41,9 @@ public class Authenticator {
 		return false;
 	}
 
+
 	/**
 	 * Method for retrieving username from JWT
-	 * 
 	 * @param jwt - JWT contained in request
 	 * @return Username of user submitting request
 	 */
@@ -69,6 +64,4 @@ public class Authenticator {
 		// returns username from parsing JWT
 		return username;
 	}
-	
-	
 }
