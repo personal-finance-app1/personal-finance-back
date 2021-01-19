@@ -31,7 +31,6 @@ public class Authenticator {
 		String uid = null;
 		try {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
-			System.out.println(decodedToken);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
 			e.printStackTrace();
@@ -56,7 +55,6 @@ public class Authenticator {
 		String username = null;
 		try {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
-			System.out.println(decodedToken);
 			username = decodedToken.getName();
 		} catch (FirebaseAuthException e) {
 			e.printStackTrace();
