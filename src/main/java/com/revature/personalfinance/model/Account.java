@@ -10,7 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor @AllArgsConstructor
 public class Account {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int accountId;
     private int userId;
@@ -18,4 +19,6 @@ public class Account {
     private int income;
     private int expenses;
     private int balance;
+    
+    
 }
