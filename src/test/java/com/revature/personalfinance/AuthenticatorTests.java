@@ -1,27 +1,31 @@
-package com.revature.personalfinance.service;
+package com.revature.personalfinance;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import com.revature.personalfinance.service.Authenticator;
 
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to complete the testing
+	String invalidJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSJ9.mo0PL2Nx0nxyJMPrSNpT1CF2jgeKXzs6H_LUEeS91rc";
 
-//	String validJWT = " ";
-	String invalidJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-			+ "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ."
-			+ "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 //	/**
 //	 * Method for testing isAuthentic() with a valid JWT
 //	 */
 //	@Test
 //	public void testIsAuthenticSuccess() {
-//		boolean result = Authenticator.isAuthentic(validJWT);
+//		boolean result = false;
+//		try {
+//			result = Authenticator.isAuthentic(validJWT);
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
 //		assertTrue(result);
 //	}
 

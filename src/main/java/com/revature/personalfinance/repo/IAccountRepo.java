@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface IAccountRepo extends JpaRepository<Account, Integer> {
 
-    Account getAccountByAccountId(int accountId);
     List<Account> getAccountsByUserId(int userId);
 
     //Account updateAccount(Account account);

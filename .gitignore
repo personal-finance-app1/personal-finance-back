@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+tim-gattie-firebase-service-account.json
+firebase-client-config
