@@ -10,19 +10,22 @@ import org.junit.Test;
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to complete the testing
-	String validJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-			+ "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ."
-			+ "N6_Glh0-bHSxjiZOgmIY6By_sog63l7bHRlxbExYPY8";
-	String invalidJWT = "eyJhbGci0iJTUzI1NiIsInR5cCI6IkpXVCJ9."
-			+ "eyJzdWIi0iIxMjM0NTY30DkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaXNTb2NpYWwiOnRydWV9."
-			+ "4pcPyMD09olPSyXnrXcjTwXyr4BsezdI1AVTmud2fU4";
+	String validJWT = "";
+	String invalidJWT = "";
+
 
 	/**
 	 * Method for testing isAuthentic() with a valid JWT
 	 */
 	@Test
 	public void testIsAuthenticSuccess() {
-		boolean result = Authenticator.isAuthentic(validJWT);
+		boolean result = false;
+		try {
+			result = Authenticator.isAuthentic(validJWT);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("Authentic JWT case: " + validJWT);
 		assertTrue(result);
 	}
