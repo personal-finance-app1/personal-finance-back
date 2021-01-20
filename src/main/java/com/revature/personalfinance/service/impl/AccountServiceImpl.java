@@ -14,8 +14,17 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public Account updateAccountExpenses(Account account) {
-	
-		return null;
+		Account returnedAccount=null;
+		if(account!=null) {
+		 
+		}
+		else if(account.getExpenses()<0) {
+			
+		}
+		else
+			returnedAccount =accountRepo.updateAccount(account);
+		
+		return returnedAccount;
 	}
 
 }
