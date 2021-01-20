@@ -22,7 +22,7 @@ public class Authenticator {
 	 * @return Boolean value indicating if token is authentic
 	 */
 	public static boolean isAuthentic(String jwt) {
-
+		
 		// Initialize firebase config.
 		AuthenticatorUtils.firebaseInitialize();
 
@@ -42,24 +42,24 @@ public class Authenticator {
 
 
 	/**
-	 * Method for retrieving username from JWT
+	 * Method for retrieving User Id from JWT
 	 * @param jwt - JWT contained in request
-	 * @return Username of user submitting request
+	 * @return UserId in integer form of user submitting request
 	 */
-	public static String getUsername(String jwt) {
+	public static int getUserId(String jwt) {
 		// Initialize firebase config.
 		AuthenticatorUtils.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
-		String username = null;
+		String userId = null;
 		try {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
-			username = decodedToken.getName();
+			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
 			// e.printStackTrace(); This should be logged through AOP
 		}
-		// returns username from parsing JWT
-		return username;
+		// returns userId from parsing JWT
+		return Integer.valueOf(userId);
 	}
 }
