@@ -33,7 +33,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			e.printStackTrace();
+			// e.printStackTrace(); This should be logged through AOP
 		}
 		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
 			return true;
@@ -57,7 +57,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			username = decodedToken.getName();
 		} catch (FirebaseAuthException e) {
-			e.printStackTrace();
+			// e.printStackTrace(); This should be logged through AOP
 		}
 		// returns username from parsing JWT
 		return username;
