@@ -1,15 +1,13 @@
 package com.revature.personalfinance.repo;
 
-import java.util.List;
-
+import com.revature.personalfinance.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.personalfinance.model.Account;
+import java.util.List;
 
 
 public interface IAccountRepo extends JpaRepository<Account, Integer> {
 
-    Account getAccountByAccountId(int accountId);
     List<Account> getAccountsByUserId(int userId);
 
     Account updateAccount(Account account);

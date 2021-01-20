@@ -18,7 +18,4 @@ public class Account {
     private String name;
     private int income;
     private int expenses;
-    private int balance;
-    
-    
 }
