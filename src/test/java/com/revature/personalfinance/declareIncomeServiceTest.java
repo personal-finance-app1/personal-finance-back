@@ -1,7 +1,6 @@
 package com.revature.personalfinance;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.when;
 
@@ -9,13 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
 import com.revature.personalfinance.service.declareIncomeService;
 
-@SuppressWarnings("deprecation")
+
 @RunWith(MockitoJUnitRunner.class)
 public class declareIncomeServiceTest {
 	
@@ -32,21 +32,9 @@ public class declareIncomeServiceTest {
 		acc = new Account(1, 1, "firstUser", 100, 50, 500);
 		acc2 = new Account(2, 2, "secondUser", 200, 100, 1000);
 		when(mockedDao.updateAccount(anyObject())).thenReturn(null);
-		when(mockedDao.getAccountByAccountId(anyInt())).thenReturn(null);
 		when(mockedDao.updateAccount(acc)).thenReturn(acc);
-		when(mockedDao.getAccountByAccountId(1)).thenReturn(acc);
 	}
 
-	@Test
-	public void testGetAccountByAccountIdSuccess() {
-		assertEquals(new Account(1, 1, "firstUser", 100, 50, 500), testService.getAccountById(1));
-	}
-	
-	@Test
-	public void testGetAccountByAccountIdFail() {
-		assertEquals(null, testService.getAccountById(2));
-	}
-	
 	@Test
 	public void testupdateAccountSuccess() {
 		assertEquals(new Account(1, 1, "firstUser", 100, 50, 500), testService.updateAccount(acc));

@@ -12,12 +12,14 @@ public class declareIncomeService {
 		this.aDao = aDao;
 	}
 
-	public Account getAccountById(int i) {
-		return null;
-	}
-
 	public Account updateAccount(Account acc) {
-		return null;
+		Account updatedAccount = this.aDao.updateAccount(acc);
+		
+		if(updatedAccount == null) {
+			return null;
+		}
+		
+		return updatedAccount;
 	}
 
 }
