@@ -17,6 +17,6 @@ public class LoggingAspect {
     @Before("within(com.revature.personalfinance.model.*)")
     public void logModelMethods(JoinPoint joinPoint) {
         String message = String.format("%s invoked %s", joinPoint.getTarget(), joinPoint.getSignature());
-        log.info(message);
+        log.debug(message);
     }
 }
