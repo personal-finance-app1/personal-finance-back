@@ -53,20 +53,20 @@ public class AuthenticatorTests {
 //	}
 
 	/**
-	 * Method for testing getUserName() with an invalid JWT username
+	 * Method for testing getUserId() with an invalid JWT userId
 	 */
 	@Test
-	public void testUsernameFail1() {
-		String result = Authenticator.getUsername(invalidJWT);
+	public void testUserIdFail1() {
+		int result = Authenticator.getUserId(invalidJWT);
 		assertEquals("invalidName", result);
 	}
 
 	/**
-	 * Method for testing getUserName() with an empty string fro JWT
+	 * Method for testing getUserId() with an empty string from JWT
 	 */
 	@Test
-	public void testUsernameFail2() {
-		String result = Authenticator.getUsername("");
+	public void testUserIdFail2() {
+		int result = Authenticator.getUserId("");
 		assertNull(result);
 	}
 
