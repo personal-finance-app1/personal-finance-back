@@ -3,32 +3,63 @@ package com.revature.personalfinance.service;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
+
 import lombok.Data;
 
 @Component
 @Scope("singleton")
 @Data
 public class Authenticator {
-	
+
 	/**
 	 * Method for authenticating token provided in request header
+	 * and checking revocation status
+	 * 
 	 * @param jwt - JWT contained in request
 	 * @return Boolean value indicating if token is authentic
 	 */
 	public static boolean isAuthentic(String jwt) {
-		// TODO implement this method
+		
+		// Initialize firebase config.
+		AuthenticatorUtils.firebaseInitialize();
+
 		// authenticates provided token with Firebase
-		return true;
+		FirebaseToken decodedToken = null;
+		String uid = null;
+		try {
+			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
+			uid = decodedToken.getUid();
+		} catch (FirebaseAuthException e) {
+			// e.printStackTrace(); This should be logged through AOP
+		}
+		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
+			return true;
+		return false;
 	}
-	
+
+
 	/**
-	 * Method for retrieving username from JWT
+	 * Method for retrieving User Id from JWT
 	 * @param jwt - JWT contained in request
-	 * @return Username of user submitting request
+	 * @return UserId in integer form of user submitting request
 	 */
-	public static String getUsername(String jwt) {
-		//TODO implement this method
-		// returns username from parsing JWT
-		return null;
+	public static int getUserId(String jwt) {
+		// Initialize firebase config.
+		AuthenticatorUtils.firebaseInitialize();
+
+		// authenticates provided token with Firebase
+		FirebaseToken decodedToken = null;
+		String userId = null;
+		try {
+			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
+			userId = decodedToken.getUid();
+		} catch (FirebaseAuthException e) {
+			// e.printStackTrace(); This should be logged through AOP
+		}
+		// returns userId from parsing JWT
+		return Integer.valueOf(userId);
 	}
 }
