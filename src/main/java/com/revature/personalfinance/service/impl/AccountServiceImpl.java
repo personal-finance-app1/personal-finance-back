@@ -7,6 +7,7 @@ import com.revature.personalfinance.service.IAccountService;
 public class AccountServiceImpl implements IAccountService {
 		
 	private IAccountRepo accountRepo;
+	
 	public AccountServiceImpl(IAccountRepo accountRepo) {
 		super();
 		this.accountRepo = accountRepo;
@@ -14,17 +15,22 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public Account updateAccountExpenses(Account account) {
-		Account returnedAccount=null;
-		if(account!=null) {
-		 
+		Account updatedAccount = null;
+		if(account == null) {
+			// log warning
+			// return null
 		}
-		else if(account.getExpenses()<0) {
-			
+		else if(account.getExpenses() < 0) {
+			// log warning
+			// return null
 		}
-		else
-			returnedAccount =accountRepo.updateAccount(account);
+		else if(account.getIncome() < 0) {
+			// log warning
+			// return null
+		}
+		else updatedAccount = accountRepo.updateAccount(account);
 		
-		return returnedAccount;
+		return updatedAccount;
 	}
 
 }
