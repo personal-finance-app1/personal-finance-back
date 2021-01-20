@@ -12,13 +12,11 @@ public class declareIncomeService {
 		this.aDao = aDao;
 	}
 
-	public Object getAccountById(int i) {
-		// TODO Auto-generated method stub
+	public Account getAccountById(int i) {
 		return null;
 	}
 
-	public Object updateAccount(Account acc) {
-		// TODO Auto-generated method stub
+	public Account updateAccount(Account acc) {
 		return null;
 	}
 
