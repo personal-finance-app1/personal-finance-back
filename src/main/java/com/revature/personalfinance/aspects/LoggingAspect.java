@@ -19,4 +19,8 @@ public class LoggingAspect {
         String message = String.format("%s invoked %s", joinPoint.getTarget(), joinPoint.getSignature());
         log.debug(message);
     }
+    
+    @B
+    
+    
 }
