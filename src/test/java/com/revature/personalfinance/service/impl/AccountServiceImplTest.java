@@ -25,10 +25,9 @@ public class AccountServiceImplTest {
 	@Before
 	public void setUp() {
 		goodAccount = new Account(1, 2, "testUser", 10, 10);
-//		Account badAccount = new Account(1, 2, "testUser", 10, 10);
 		accountService = new AccountServiceImpl(mockedAccountRepo);
 		
-		when(mockedAccountRepo.updateAccount(any())).thenReturn(null);
+//		when(mockedAccountRepo.updateAccount(any())).thenReturn(null);
 		when(mockedAccountRepo.updateAccount(goodAccount)).thenReturn(goodAccount);
 	}
 	

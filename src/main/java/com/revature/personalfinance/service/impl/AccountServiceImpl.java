@@ -16,21 +16,39 @@ public class AccountServiceImpl implements IAccountService {
 	@Override
 	public Account updateAccountExpenses(Account account) {
 		Account updatedAccount = null;
+		if (verifyAccount(account)) {
+			updatedAccount = accountRepo.updateAccount(account);
+		}
+		return updatedAccount;
+	}
+
+	@Override
+	public boolean verifyAccount(Account account) {
 		if(account == null) {
 			// log warning
-			// return null
+			return false;
 		}
-		else if(account.getExpenses() < 0) {
+		else if(account.getAccountId() <= 0) {
 			// log warning
-			// return null
+			return false;
+		}
+		else if (account.getUserId() <= 0) {
+			// log warning
+			return false;
+		}
+		else if(account.getName() == null || account.getName() == "") {
+			// log warning
+			return false;
 		}
 		else if(account.getIncome() < 0) {
 			// log warning
-			// return null
+			return false;
 		}
-		else updatedAccount = accountRepo.updateAccount(account);
-		
-		return updatedAccount;
+		else if(account.getExpenses() < 0) {
+			// log warning
+			return false;
+		}
+		else return true;
 	}
 
 }
