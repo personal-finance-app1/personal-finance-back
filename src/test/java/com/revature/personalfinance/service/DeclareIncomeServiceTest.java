@@ -1,4 +1,4 @@
-package com.revature.personalfinance;
+package com.revature.personalfinance.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyObject;
@@ -30,8 +30,8 @@ public class DeclareIncomeServiceTest {
 		testService = new DeclareIncomeService(mockedDao);
 		acc = new Account(1, 1, "firstUser", 100, 50);
 		acc2 = new Account(2, 2, "secondUser", 200, 100);
-		when(mockedDao.updateAccount(anyObject())).thenReturn(null);
-		when(mockedDao.updateAccount(acc)).thenReturn(acc);
+		when(mockedDao.save(anyObject())).thenReturn(null);
+		when(mockedDao.save(acc)).thenReturn(acc);
 	}
 
 	@Test

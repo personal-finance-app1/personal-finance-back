@@ -13,7 +13,7 @@ public class DeclareIncomeService {
 	}
 
 	public Account updateAccount(Account acc) {
-		Account updatedAccount = this.aDao.updateAccount(acc);
+		Account updatedAccount = this.aDao.save(acc);
 		
 		if(updatedAccount == null) {
 			return null;
