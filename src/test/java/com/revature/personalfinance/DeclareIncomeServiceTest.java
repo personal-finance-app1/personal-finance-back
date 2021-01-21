@@ -8,27 +8,26 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
-import com.revature.personalfinance.service.declareIncomeService;
+import com.revature.personalfinance.service.DeclareIncomeService;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class declareIncomeServiceTest {
+public class DeclareIncomeServiceTest {
 	
 	@Mock
 	private IAccountRepo mockedDao;
 	
-	private declareIncomeService testService;
+	private DeclareIncomeService testService;
 	private Account acc;
 	private Account acc2;
 
 	@Before
 	public void setUp() {
-		testService = new declareIncomeService(mockedDao);
+		testService = new DeclareIncomeService(mockedDao);
 		acc = new Account(1, 1, "firstUser", 100, 50);
 		acc2 = new Account(2, 2, "secondUser", 200, 100);
 		when(mockedDao.updateAccount(anyObject())).thenReturn(null);
