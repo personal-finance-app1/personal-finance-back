@@ -1,9 +1,8 @@
 package com.revature.personalfinance.repo;
 
 import com.revature.personalfinance.model.Account;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface IAccountRepo extends JpaRepository<Account, Integer> {
