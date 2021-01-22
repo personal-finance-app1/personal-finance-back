@@ -51,4 +51,9 @@ public class AccountControllerTest {
 		ResponseEntity<Account> returnedAccount = accountController.updateAccount(badAccount);
         assertNotEquals(account,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
     }
+    @Test
+    public void testUpdateAccountNull() {
+    	ResponseEntity<Account> returnedAccount = accountController.updateAccount(null);
+        assertEquals(null,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
+    }
 }
