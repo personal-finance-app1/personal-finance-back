@@ -20,7 +20,4 @@ public class LoggingAspect {
         log.debug(message);
     }
     
-    @B
-    
-    
 }

@@ -42,5 +42,5 @@ public class DeclareIncomeServiceTest {
 	@Test
 	public void testupdateAccountFail() {
 		assertEquals(null, testService.updateAccount(acc2));
-	}	
+	}
 }
