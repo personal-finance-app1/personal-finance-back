@@ -1,5 +1,6 @@
 package com.revature.personalfinance.service.impl;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -25,12 +26,19 @@ public class AccountServiceImplTest {
 	@Before
 	public void setUp() {
 		account = new Account(1, 2, "testUser", 10, 10);
-
-
 		accountService = new AccountServiceImpl(mockedAccountRepo);
 		
-//		when(mockedAccountRepo.updateAccount(any())).thenReturn(null);
-		when(mockedAccountRepo.updateAccount(account)).thenReturn(account);
+		when(mockedAccountRepo.save(any())).thenReturn(null);
+		when(mockedAccountRepo.save(account)).thenReturn(account);
+	}
+	
+	@Test
+	public void testUpdateAccountFail() {
+		Account badAccount = new Account(10, 10, "badUser", 20, 20);
+		boolean check = true;
+		if (accountService.updateAccountExpenses(badAccount) == null)
+			check = false;
+		assertFalse(check);
 	}
 	
 	@Test
@@ -39,6 +47,11 @@ public class AccountServiceImplTest {
 		if (accountService.updateAccountExpenses(account) != null)
 			check = true;
 		assertTrue(check);
+	}
+	
+	@Test
+	public void testVerifyAccountNullFail() {
+		assertFalse(accountService.verifyAccount(null));
 	}
 	
 	@Test
