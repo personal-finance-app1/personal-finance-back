@@ -21,7 +21,6 @@ public class DeclareIncomeService {
 		}
 		
 		return updatedAccount;
-
 	}
 	
     public boolean verifyAccount(Account account) {
@@ -51,5 +50,4 @@ public class DeclareIncomeService {
         }
         else return true;
     }
-
 }

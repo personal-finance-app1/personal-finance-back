@@ -1,5 +1,6 @@
 package com.revature.personalfinance.service;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.when;
@@ -8,11 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
-import com.revature.personalfinance.service.DeclareIncomeService;
 
 
 @RunWith(MockitoJUnitRunner.class)

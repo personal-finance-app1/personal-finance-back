@@ -20,17 +20,18 @@ public class DeclareIncomeController {
 		this.declareIncomeService = declareIncomeService;
 	}
 	
-	@PutMapping
-	public ResponseEntity<Account> updateAccount(@RequestBody Account acc){
+	@PutMapping(value="/income")
+	public ResponseEntity<Account> updateAccount(@RequestBody Account account){
 		
-		//JWT Validation
-		
-		Account a = declareIncomeService.updateAccount(acc);
-		
-		if(a != acc) { // If no change has occurred
-			return ResponseEntity.status(500).build();
+		Account updatedAccount = null;
+
+		if(account != null) {
+			updatedAccount = declareIncomeService.updateAccount(account);
+			if(updatedAccount == null) {
+				return ResponseEntity.status(500).build();
+			}
+			return ResponseEntity.status(200).body(updatedAccount);
 		}
-		return ResponseEntity.status(202).body(acc);
+		return ResponseEntity.status(400).build();
 	}
-	
 }
