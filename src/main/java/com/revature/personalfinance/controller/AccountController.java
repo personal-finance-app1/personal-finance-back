@@ -23,15 +23,7 @@ public class AccountController {
     
     @PutMapping(value="/expenses")
     public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
-        Account newAccount = null;
-        if (account != null) {
-            newAccount = accountService.updateAccountExpenses(account);
-            if (newAccount == null) {
-                return ResponseEntity.status(500).build();
-            }
-            return ResponseEntity.status(200).body(newAccount);
-        }
-        return ResponseEntity.status(300).build();
+    	return null;
     }
     
 }
