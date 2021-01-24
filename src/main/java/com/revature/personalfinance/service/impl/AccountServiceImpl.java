@@ -15,40 +15,12 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public Account updateAccountExpenses(Account account) {
-		Account updatedAccount = null;
-		if (verifyAccount(account)) {
-			updatedAccount = accountRepo.updateAccount(account);
-		}
-		return updatedAccount;
+		return null;
 	}
 
 	@Override
 	public boolean verifyAccount(Account account) {
-		if(account == null) {
-			// log warning
-			return false;
-		}
-		else if(account.getAccountId() <= 0) {
-			// log warning
-			return false;
-		}
-		else if (account.getUserId() <= 0) {
-			// log warning
-			return false;
-		}
-		else if(account.getName() == null || account.getName() == "") {
-			// log warning
-			return false;
-		}
-		else if(account.getIncome() < 0) {
-			// log warning
-			return false;
-		}
-		else if(account.getExpenses() < 0) {
-			// log warning
-			return false;
-		}
-		else return true;
+		return false;
 	}
 
 }

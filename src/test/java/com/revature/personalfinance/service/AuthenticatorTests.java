@@ -3,13 +3,14 @@ package com.revature.personalfinance.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to complete the testing
+
+
 //	String validJWT = " ";
 	String invalidJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
 			+ "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ."
@@ -52,20 +53,20 @@ public class AuthenticatorTests {
 //	}
 
 	/**
-	 * Method for testing getUserName() with an invalid JWT username
+	 * Method for testing getUserId() with an invalid JWT userId
 	 */
 	@Test
-	public void testUsernameFail1() {
-		String result = Authenticator.getUsername(invalidJWT);
+	public void testUserIdFail1() {
+		int result = Authenticator.getUserId(invalidJWT);
 		assertEquals("invalidName", result);
 	}
 
 	/**
-	 * Method for testing getUserName() with an empty string fro JWT
+	 * Method for testing getUserId() with an empty string from JWT
 	 */
 	@Test
-	public void testUsernameFail2() {
-		String result = Authenticator.getUsername("");
+	public void testUserIdFail2() {
+		int result = Authenticator.getUserId("");
 		assertNull(result);
 	}
 
