@@ -9,9 +9,8 @@ public interface IAccountRepo extends JpaRepository<Account, Integer> {
 
     List<Account> getAccountsByUserId(int userId);
 
-//    Account updateAccount(Account account);
+    //Account updateAccount(Account account);
 
     // For Stretch goal (multiple tracked accounts)
     // void deleteAccountByAccountId(int accountId);
-    
 }
