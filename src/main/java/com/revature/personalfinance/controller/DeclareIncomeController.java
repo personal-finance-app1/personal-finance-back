@@ -2,6 +2,7 @@ package com.revature.personalfinance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,8 @@ import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.service.DeclareIncomeService;
 
 @RestController
+//@CrossOrigin //To allow all traffic
+@CrossOrigin(origins = "http://localhost:4200")
 public class DeclareIncomeController {
 	
 	private DeclareIncomeService declareIncomeService;
@@ -28,6 +31,8 @@ public class DeclareIncomeController {
 	 */
 	@PutMapping(value="/account")
 	public ResponseEntity<Account> updateAccount(@RequestBody Account account){
+		
+		System.out.println("Hello Controller");
 
 		Account updatedAccount = null;
 
