@@ -11,15 +11,12 @@ public class DeclareIncomeService {
 		super();
 		this.aDao = aDao;
 	}
+	
 
 	public Account updateAccount(Account acc) {
-		Account updatedAccount = this.aDao.save(acc);
 		
-		if(updatedAccount == null) {
-			return null;
-		}
-		
-		return updatedAccount;
+		return null;
 	}
+	
 
 }
