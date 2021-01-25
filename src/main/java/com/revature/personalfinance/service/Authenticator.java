@@ -46,7 +46,7 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return UserId in integer form of user submitting request
 	 */
-	public static int getUserId(String jwt) {
+	public static String getUserId(String jwt) {
 		// Initialize firebase config.
 		AuthenticatorUtils.firebaseInitialize();
 
@@ -60,6 +60,6 @@ public class Authenticator {
 			// e.printStackTrace(); This should be logged through AOP
 		}
 		// returns userId from parsing JWT
-		return Integer.valueOf(userId);
+		return String.valueOf(userId);
 	}
 }

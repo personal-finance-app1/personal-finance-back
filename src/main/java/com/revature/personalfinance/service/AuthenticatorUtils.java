@@ -26,7 +26,7 @@ public class AuthenticatorUtils {
 		try {
 			
 			options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault())
-					.setStorageBucket("training-team-253916.appspot.com").build();
+					.build();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
