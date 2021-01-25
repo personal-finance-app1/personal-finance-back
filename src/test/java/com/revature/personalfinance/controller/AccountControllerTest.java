@@ -30,8 +30,8 @@ public class AccountControllerTest {
         
         accountController = new AccountController(accountService);
         account = new Account(1,1,"test",1,1);
-        when(accountService.updateAccountExpenses(any())).thenReturn(null);
-        when(accountService.updateAccountExpenses(account)).thenReturn(account);
+        when(accountService.updateAccount(any())).thenReturn(null);
+        when(accountService.updateAccount(account)).thenReturn(account);
     }
     
     @Test

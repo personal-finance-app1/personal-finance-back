@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -30,13 +31,18 @@ public class AccountServiceImplTest {
 		
 		when(mockedAccountRepo.save(any())).thenReturn(null);
 		when(mockedAccountRepo.save(account)).thenReturn(account);
+		when(mockedAccountRepo.getOne(account.getAccountId())).thenReturn(account);
 	}
 	
+	@BeforeEach
+	public void resetAccount(){
+		account = new Account(1, 2, "testUser", 10, 10);
+	}
 	@Test
 	public void testUpdateAccountFail() {
 		Account badAccount = new Account(10, 10, "badUser", 20, 20);
 		boolean check = true;
-		if (accountService.updateAccountExpenses(badAccount) == null)
+		if (accountService.updateAccount(badAccount) == null)
 			check = false;
 		assertFalse(check);
 	}
@@ -44,7 +50,7 @@ public class AccountServiceImplTest {
 	@Test
 	public void testUpdateAccountSuccess() {
 		boolean check = false;
-		if (accountService.updateAccountExpenses(account) != null)
+		if (accountService.updateAccount(account) != null)
 			check = true;
 		assertTrue(check);
 	}

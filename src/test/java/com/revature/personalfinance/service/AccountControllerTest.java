@@ -1,27 +1,18 @@
 package com.revature.personalfinance.service;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.when;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 import static org.mockito.ArgumentMatchers.any;
-
 import com.revature.personalfinance.controller.AccountController;
 import com.revature.personalfinance.model.Account;
-import com.revature.personalfinance.service.IAccountService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountControllerTest {
@@ -37,8 +28,8 @@ public class AccountControllerTest {
         
         accountController = new AccountController(accountService);
         account = new Account(1,1,"test",1,1);
-        when(accountService.updateAccountExpenses(any())).thenReturn(null);
-        when(accountService.updateAccountExpenses(account)).thenReturn(account);
+        when(accountService.updateAccount(any())).thenReturn(null);
+        when(accountService.updateAccount(account)).thenReturn(account);
     }
     
     @Test
