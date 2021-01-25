@@ -1,2 +1,3 @@
-package com.revature.personalfinance.controller;public class AccountController {
+package com.revature.personalfinance.controller;
+public class AccountController {
 }

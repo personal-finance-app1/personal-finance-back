@@ -12,11 +12,43 @@ public class DeclareIncomeService {
 		this.aDao = aDao;
 	}
 	
-
 	public Account updateAccount(Account acc) {
 		
-		return null;
+		Account updatedAccount = null;
+		
+		if(verifyAccount(acc)) {
+			updatedAccount= this.aDao.save(acc);
+		}
+		
+		return updatedAccount;
 	}
 	
+    public boolean verifyAccount(Account account) {
+        if(account == null) {
+            // log warning
+            return false;
+        }
+        else if(account.getAccountId() <= 0) {
+            // log warning
+            return false;
+        }
+        else if (account.getUserId() <= 0) {
+            // log warning
+            return false;
+        }
+        else if(account.getName() == null || account.getName() == "") {
+            // log warning
+            return false;
+        }
+        else if(account.getIncome() < 0) {
+            // log warning
+            return false;
+        }
+        else if(account.getExpenses() < 0) {
+            // log warning
+            return false;
+        }
+        else return true;
+    }
 
 }
