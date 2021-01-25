@@ -32,7 +32,9 @@ public class AccountControllerTest {
         account = new Account(1,1,"test",1,1);
         when(accountService.updateAccount(any())).thenReturn(null);
         when(accountService.updateAccount(account)).thenReturn(account);
+        when(accountService.verifyAccount(account)).thenReturn(true);
     }
+    
     
     @Test
     public void testUpdateAccountSuccess() {

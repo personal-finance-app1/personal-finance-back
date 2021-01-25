@@ -11,6 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 import static org.mockito.ArgumentMatchers.any;
+
+import com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.http.HttpStatus;
 import com.revature.personalfinance.controller.AccountController;
 import com.revature.personalfinance.model.Account;
 
@@ -28,9 +30,12 @@ public class AccountControllerTest {
         
         accountController = new AccountController(accountService);
         account = new Account(1,1,"test",1,1);
-        when(accountService.updateAccount(any())).thenReturn(null);
+        when(accountService.updateAccount(any())).thenReturn(account);
         when(accountService.updateAccount(account)).thenReturn(account);
+        when(accountService.verifyAccount(account)).thenReturn(true);
     }
+    
+
     
     @Test
     public void testUpdateAccountSuccess() {

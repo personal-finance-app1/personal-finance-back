@@ -42,7 +42,7 @@ public class AccountServiceImpl implements IAccountService {
 		Account persistedAccount = null; // acct stored in db
 		Optional<Account> persistentAccountWrapper = null; //account wrapper for JPA query
 
-		if (this.accountRepo != null && account != null && verifyAccount(account)) {
+		if (this.accountRepo != null && verifyAccount(account)) {
 			persistentAccountWrapper = this.accountRepo.findById(account.getAccountId()); // get account wrapper
 
 			//If optional value is not empty (I.e, the db has a record a of Account account)

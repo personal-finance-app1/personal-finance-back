@@ -35,7 +35,7 @@ public class AccountController {
         if(this.accountService == null) {
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        else if(this.accountService.verifyAccount(account)){
+        else if(accountService.verifyAccount(account)){
             persistedAccount = this.accountService.updateAccount(account);
             
             if(persistedAccount != null) //updateAccount returns non null if the account was updated, otherwise its still a bad req.

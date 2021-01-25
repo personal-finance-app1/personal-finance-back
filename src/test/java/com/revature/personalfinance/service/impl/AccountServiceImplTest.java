@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +33,8 @@ public class AccountServiceImplTest {
 		
 		when(mockedAccountRepo.save(any())).thenReturn(null);
 		when(mockedAccountRepo.save(account)).thenReturn(account);
-		when(mockedAccountRepo.getOne(account.getAccountId())).thenReturn(account);
+		when(mockedAccountRepo.findById(account.getAccountId())).thenReturn(Optional.of(account));
+	
 	}
 	
 	@BeforeEach
