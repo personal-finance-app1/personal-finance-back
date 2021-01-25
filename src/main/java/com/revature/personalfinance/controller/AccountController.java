@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @GetMapping
-    public ResponseEntity<String> getAccount(int uid) {
+    public ResponseEntity<String> getAccount() {
         return ResponseEntity.status(HttpStatus.OK).body("Welcome! Requests are working!");
     }
 }
