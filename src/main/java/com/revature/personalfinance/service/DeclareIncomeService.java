@@ -1,8 +1,11 @@
 package com.revature.personalfinance.service;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
 
+@Service
 public class DeclareIncomeService {
 	
 	private IAccountRepo aDao;	
@@ -12,6 +15,11 @@ public class DeclareIncomeService {
 		this.aDao = aDao;
 	}
 	
+	/**
+	 * Method for updating values of an account
+	 * @param acc
+	 * @return
+	 */
 	public Account updateAccount(Account acc) {
 		
 		Account updatedAccount = null;
@@ -50,5 +58,25 @@ public class DeclareIncomeService {
         }
         else return true;
     }
+    
+    /**
+     * Method for retrieving the account of the provided userId
+     * @param userId
+     * @return
+     */
+    
+    
+
+
+	public Account getAccount(int userId) {
+		
+		Account account = null;
+		
+		if(userId > 0) {
+			account= this.aDao.getOne(userId);
+		}
+		
+		return account;
+	}
 
 }
