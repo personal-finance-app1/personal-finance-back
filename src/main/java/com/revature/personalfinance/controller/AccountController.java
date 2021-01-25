@@ -35,9 +35,11 @@ public class AccountController {
         if(this.accountService == null) {
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        else{
+        else if(this.accountService.verifyAccount(account)){
             persistedAccount = this.accountService.updateAccount(account);
-            returnEntity = ResponseEntity.status(HttpStatus.OK).body(persistedAccount);
+            
+            if(persistedAccount != null) //updateAccount returns non null if the account was updated, otherwise its still a bad req.
+                returnEntity = ResponseEntity.status(HttpStatus.OK).body(persistedAccount);
         } 
 
     	return returnEntity;
@@ -47,13 +49,14 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllAccountsByUser(@RequestBody Account userAccount){
         ResponseEntity<List<Account>> returnEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         List<Account> returnList = null;
-        String name = userAccount.getName();
+        Integer userId = userAccount.getUserId();
 
         if(this.accountService == null) {
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        else if(name != null && name.length() > 0){
-            returnList = this.accountService.getAllAccountsByUser(name);
+        else if(userAccount != null && userAccount.getUserId() > 0){
+            userId = userAccount.getUserId();
+            returnList = this.accountService.getAllAccountsByUserId(userId);
             returnEntity = ResponseEntity.status(200).body(returnList);
         }
         

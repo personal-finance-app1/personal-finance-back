@@ -1,6 +1,7 @@
 package com.revature.personalfinance.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
@@ -39,10 +40,14 @@ public class AccountServiceImpl implements IAccountService {
 	@Override
 	public Account updateAccount(Account account) {
 		Account persistedAccount = null; // acct stored in db
+		Optional<Account> persistentAccountWrapper = null; //account wrapper for JPA query
 
 		if (this.accountRepo != null && account != null && verifyAccount(account)) {
-			persistedAccount = this.accountRepo.getOne(account.getAccountId()); // get account
-			if (persistedAccount != null) {
+			persistentAccountWrapper = this.accountRepo.findById(account.getAccountId()); // get account wrapper
+
+			//If optional value is not empty (I.e, the db has a record a of Account account)
+			if (!persistentAccountWrapper.equals(Optional.empty())) {
+				persistedAccount = persistentAccountWrapper.get();// unbox account
 				persistedAccount.setExpenses(account.getExpenses()); // update expenses
 				persistedAccount.setIncome(account.getIncome()); //update income
 				this.accountRepo.save(persistedAccount); // persist updated account
@@ -77,11 +82,11 @@ public class AccountServiceImpl implements IAccountService {
 	 * @return List<Account> of accounts owned by the user specified by param name.
 	 */
 	@Override
-	public List<Account> getAllAccountsByUser(String name) {
+	public List<Account> getAllAccountsByUserId(Integer accountId) {
 		List<Account> usersAccountList = null;
 
-		if(name != null && name.length() > 0){
-			usersAccountList = this.accountRepo.findByName(name);
+		if(accountId != null && accountId > 0){
+			usersAccountList = this.accountRepo.findAllByUserId(accountId);
 		}
 		return usersAccountList;
 	}

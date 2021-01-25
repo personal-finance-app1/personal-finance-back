@@ -12,7 +12,7 @@ public interface IAccountRepo extends JpaRepository<Account, Integer> {
      * @param name the name of the user whose List of accounts we'd like to fetch
      * @return List<Account> of all Accounts belonging to user with String name
      */
-    List<Account> findByName(String name);
+    List<Account> findAllByUserId(Integer accountId);
 
 //    Account updateAccount(Account account);
 

@@ -8,6 +8,6 @@ public interface IAccountService {
 	
 	public Account updateAccount(Account account);
 	public boolean verifyAccount(Account account);
-	public List<Account> getAllAccountsByUser(String name);
+	public List<Account> getAllAccountsByUserId(Integer userId);
 
 }
