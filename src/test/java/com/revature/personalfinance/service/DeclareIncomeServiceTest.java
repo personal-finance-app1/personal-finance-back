@@ -28,15 +28,15 @@ public class DeclareIncomeServiceTest {
 	@Before
 	public void setUp() {
 		testService = new DeclareIncomeService(mockedDao);
-		acc = new Account(1, 1, "firstUser", 100, 50);
-		acc2 = new Account(2, 2, "secondUser", 200, 100);
+		acc = new Account(1, "user-1", "firstUser", 100, 50);
+		acc2 = new Account(2, "user-2", "secondUser", 200, 100);
 		when(mockedDao.save(anyObject())).thenReturn(null);
 		when(mockedDao.save(acc)).thenReturn(acc);
 	}
 
 	@Test
 	public void testupdateAccountSuccess() {
-		assertEquals(new Account(1, 1, "firstUser", 100, 50), testService.updateAccount(acc));
+		assertEquals(new Account(1, "user-1", "firstUser", 100, 50), testService.updateAccount(acc));
 	}
 	
 	@Test
