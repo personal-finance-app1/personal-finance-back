@@ -6,6 +6,8 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import com.google.firebase.auth.FirebaseAuthException;
+
 public class AuthenticatorTests {
 
 	// We will need more accurate JWTs that we can manipulate before being able to

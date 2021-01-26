@@ -2,13 +2,18 @@ package com.revature.personalfinance;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication @EnableJpaRepositories
+import com.revature.personalfinance.service.Authenticator;
+
+@SpringBootApplication
+@EnableJpaRepositories
 public class PersonalFinanceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PersonalFinanceApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PersonalFinanceApplication.class, args);
+	}
 
 }
