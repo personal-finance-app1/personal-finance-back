@@ -14,10 +14,5 @@ public interface IAccountRepo extends JpaRepository<Account, String> {
      */
     List<Account> findAllByUserId(String userId);
     Account findByAccountId(Integer accountId);
-
-//    Account updateAccount(Account account);
-
-    // For Stretch goal (multiple tracked accounts)
-    // void deleteAccountByAccountId(int accountId);
     
 }
