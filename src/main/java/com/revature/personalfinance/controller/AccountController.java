@@ -17,7 +17,7 @@ import com.revature.personalfinance.service.IAccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "http://localhost:4200")// I commented out cors for now to make  testing easier. We can activate it on our final verison of the project.
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
     
     private IAccountService accountService;

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements IAccountService {
 
 	/**
-	 * accountRepo is a spring-data jpa repository which can perform CRUD operations
+	 * accountRepo is a spring-data JPA repository which can perform CRUD operations
 	 * on Account objects.
 	 */
 	private IAccountRepo accountRepo;
@@ -31,7 +31,7 @@ public class AccountServiceImpl implements IAccountService {
 
 	/**
 	 * updateAccountExpenses updates the expenses of an account stored in the
-	 * database
+	 * database.
 	 * 
 	 * @param account the account which we'd like to update which should have all of
 	 *                the needed information to perform the update.
@@ -39,7 +39,7 @@ public class AccountServiceImpl implements IAccountService {
 	 */
 	@Override
 	public Account updateAccount(Account account) {
-		Account persistedAccount = null; // acct stored in db
+		Account persistedAccount = null; // acc stored in db
 		
 		if (this.accountRepo != null && verifyAccount(account)) {
 			persistedAccount = this.accountRepo.findByAccountId(account.getAccountId()); // get account wrapper
@@ -55,9 +55,9 @@ public class AccountServiceImpl implements IAccountService {
 		return persistedAccount;
 	}
 
-	/**Verify account is used to validate any account we'd like to persist in the db by performing sensible 
+	/**Verify account is used to validate any account we'd like to persist in the db by performing sensible
 	 * checks against the values stored in said account. 
-	 * @return boolean indiciating whether or no the values stored in the account are valid.
+	 * @return boolean indicating whether or no the values stored in the account are valid.
 	 */
 	@Override
 	public boolean verifyAccount(Account account) {
@@ -76,7 +76,7 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	/**getAllAccountsByUser returns a list of accounts associated with a user.
-	 * @param name the name of the user which to 
+	 * @param name the name of the user which to .
 	 * @return List<Account> of accounts owned by the user specified by param name.
 	 */
 	@Override
