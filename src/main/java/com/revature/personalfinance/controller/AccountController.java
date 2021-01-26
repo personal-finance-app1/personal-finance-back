@@ -28,7 +28,6 @@ public class AccountController {
         this.accountService = accountService;
     }
     
-
     @PatchMapping()
     public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
         ResponseEntity<Account> returnEntity = ResponseEntity.status(400).body(null);
