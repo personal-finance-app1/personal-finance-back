@@ -17,7 +17,7 @@ import com.revature.personalfinance.service.IAccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200") I commented out cors for now to make  testing easier. We can activate it on our final verison of the project.
 public class AccountController {
     
     private IAccountService accountService;
@@ -51,12 +51,12 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllAccountsByUser(@RequestBody Account userAccount){
         ResponseEntity<List<Account>> returnEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         List<Account> returnList = null;
-        Integer userId = userAccount.getUserId();
+        String userId = userAccount.getUserId();
 
         if(this.accountService == null) {
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        else if(userAccount != null && userAccount.getUserId() > 0){
+        else if(userAccount != null && userAccount.getUserId() != null && !userAccount.getUserId().equals("")){
             userId = userAccount.getUserId();
             returnList = this.accountService.getAllAccountsByUserId(userId);
             returnEntity = ResponseEntity.status(200).body(returnList);

@@ -40,14 +40,12 @@ public class AccountServiceImpl implements IAccountService {
 	@Override
 	public Account updateAccount(Account account) {
 		Account persistedAccount = null; // acct stored in db
-		Optional<Account> persistentAccountWrapper = null; //account wrapper for JPA query
-
+		
 		if (this.accountRepo != null && verifyAccount(account)) {
-			persistentAccountWrapper = this.accountRepo.findById(account.getAccountId()); // get account wrapper
+			persistedAccount = this.accountRepo.findByAccountId(account.getAccountId()); // get account wrapper
 
 			//If optional value is not empty (I.e, the db has a record a of Account account)
-			if (!persistentAccountWrapper.equals(Optional.empty())) {
-				persistedAccount = persistentAccountWrapper.get();// unbox account
+			if (persistedAccount != null) {
 				persistedAccount.setExpenses(account.getExpenses()); // update expenses
 				persistedAccount.setIncome(account.getIncome()); //update income
 				this.accountRepo.save(persistedAccount); // persist updated account
@@ -69,7 +67,7 @@ public class AccountServiceImpl implements IAccountService {
 
 		if(isNotNull){
 			hasValidNumericalValues = account.getAccountId() > 0 && account.getIncome() >= 0
-									  && account.getExpenses() >= 0 && account.getUserId() > 0 ;
+									  && account.getExpenses() >= 0 && account.getUserId() != null && !account.getUserId().equals("");
 			hasValidName = account.getName() != null && !account.getName().equals("");
 		}
 
@@ -82,11 +80,11 @@ public class AccountServiceImpl implements IAccountService {
 	 * @return List<Account> of accounts owned by the user specified by param name.
 	 */
 	@Override
-	public List<Account> getAllAccountsByUserId(Integer accountId) {
+	public List<Account> getAllAccountsByUserId(String userId) {
 		List<Account> usersAccountList = null;
 
-		if(accountId != null && accountId > 0){
-			usersAccountList = this.accountRepo.findAllByUserId(accountId);
+		if(userId != null && userId != null && !userId.equals("")){
+			usersAccountList = this.accountRepo.findAllByUserId(userId);
 		}
 		return usersAccountList;
 	}

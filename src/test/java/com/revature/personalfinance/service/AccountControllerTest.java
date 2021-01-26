@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 import static org.mockito.ArgumentMatchers.any;
 
-import com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.http.HttpStatus;
 import com.revature.personalfinance.controller.AccountController;
 import com.revature.personalfinance.model.Account;
 
@@ -29,7 +28,7 @@ public class AccountControllerTest {
         objectMapper = new ObjectMapper();
         
         accountController = new AccountController(accountService);
-        account = new Account(1,1,"test",1,1);
+        account = new Account(1,"test-user","test",1,1);
         when(accountService.updateAccount(any())).thenReturn(account);
         when(accountService.updateAccount(account)).thenReturn(account);
         when(accountService.verifyAccount(account)).thenReturn(true);
@@ -44,7 +43,7 @@ public class AccountControllerTest {
     }
     @Test
     public void testUpdateAccountFail() {
-        Account badAccount=new Account(1000,1000,"NotInDB",1000,1000);
+        Account badAccount=new Account(1000,"bad-user","NotInDB",1000,1000);
 		ResponseEntity<Account> returnedAccount = accountController.updateAccount(badAccount);
         assertNotEquals(account,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
     }
