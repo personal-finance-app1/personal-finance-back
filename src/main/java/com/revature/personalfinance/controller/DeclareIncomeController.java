@@ -12,7 +12,6 @@ import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.service.DeclareIncomeService;
 
 @RestController
-//@CrossOrigin //To allow all traffic
 @CrossOrigin(origins = "http://localhost:4200")
 public class DeclareIncomeController {
 	
