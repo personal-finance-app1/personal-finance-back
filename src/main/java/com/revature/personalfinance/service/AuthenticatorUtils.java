@@ -2,6 +2,9 @@ package com.revature.personalfinance.service;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -12,6 +15,8 @@ import com.google.firebase.auth.FirebaseToken;
 
 public class AuthenticatorUtils {
 
+    private static final Logger log = LogManager.getLogger(AuthenticatorUtils.class);
+	
 	/**
 	 * Method for initializing firebase Admin SDK
 	 * 
@@ -27,7 +32,7 @@ public class AuthenticatorUtils {
 			try {
 				options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
 			} catch (IOException e) {
-//				e.printStackTrace();
+				log.warn("Something went wrong with Firebase initialization");
 			}
 
 			FirebaseApp.initializeApp(options);

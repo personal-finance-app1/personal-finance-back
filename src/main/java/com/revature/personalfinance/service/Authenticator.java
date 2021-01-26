@@ -1,5 +1,7 @@
 package com.revature.personalfinance.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +16,9 @@ import lombok.Data;
 @Scope("singleton")
 @Data
 public class Authenticator {
-
+	
+    private static final Logger log = LogManager.getLogger(Authenticator.class);
+    
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -34,11 +38,10 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-//			e.printStackTrace(); // This should be logged through AOP
+			log.warn("Invalid JWT token");
 		} finally {
 			FirebaseApp.getInstance().delete();
 		}
-		
 		
 		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
 			return true;
@@ -62,7 +65,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-//			e.printStackTrace(); // This should be logged through AOP
+			log.warn("Invalid JWT token");
 		} finally {
 			FirebaseApp.getInstance().delete();
 		}
