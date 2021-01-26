@@ -82,3 +82,7 @@ Contributors:
 * [Kevin Hake](https://github.com/khake96)
 * [Alex Kulikov](https://github.com/S0ddy)
 * [Mukesh Chaudhary](https://github.com/Mukesh8688)
+
+## Version
+
+* First Iteration: Jan. 11, 2021 - Jan. 28, 2021
