@@ -11,17 +11,9 @@ import com.revature.personalfinance.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * AccountServiceImpl exposes several service related methods related to
- * accounts such as updating expenses and retrieving accounts.
- */
 @Service
 public class AccountServiceImpl implements IAccountService {
 
-	/**
-	 * accountRepo is a spring-data JPA repository which can perform CRUD operations
-	 * on Account objects.
-	 */
 	private IAccountRepo accountRepo;
 
 	@Autowired
@@ -31,12 +23,10 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	/**
-	 * updateAccountExpenses updates the expenses of an account stored in the
-	 * database.
-	 *
-	 * @param account the account which we'd like to update which should have all of
+	 * Updates the expenses of an account stored in the database.
+	 * @param account The account which we'd like to update which should have all of
 	 *                the needed information to perform the update.
-	 * @return Account the updated account object.
+	 * @return Returns the updated account object.
 	 */
 	@Override
 	public Account updateAccount(Account account) {
@@ -59,6 +49,7 @@ public class AccountServiceImpl implements IAccountService {
 	/**
 	 * Verify account is used to validate any account we'd like to persist in the db by performing sensible
 	 * checks against the values stored in said account.
+	 * @param account The account to be verified.
 	 * @return boolean indicating whether or no the values stored in the account are valid.
 	 */
 	@Override

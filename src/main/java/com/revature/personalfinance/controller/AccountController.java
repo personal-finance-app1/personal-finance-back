@@ -28,6 +28,11 @@ public class AccountController {
         this.accountService = accountService;
     }
     
+    /**
+     * Will verify JWT token in the header before sending account to the service layer.
+     * @param account The account to be updated in the database.
+     * @return Returns the updated account on success and null on failure.
+     */
     @PatchMapping()
     public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
         ResponseEntity<Account> returnEntity = ResponseEntity.status(400).body(null);
@@ -46,6 +51,12 @@ public class AccountController {
     	return returnEntity;
     }
 
+    /**
+     * Obtains the account after login. In future iterations will retrieve every account associated with the user
+     * so that the user can choose between them.
+     * @param userAccount Passes in entire object, but only accesses the userId to locate the user's accounts.
+     * @return Returns a list of accounts belonging to the user.
+     */
     @GetMapping()
     public ResponseEntity<List<Account>> getAllAccountsByUser(@RequestBody Account userAccount){
         ResponseEntity<List<Account>> returnEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
