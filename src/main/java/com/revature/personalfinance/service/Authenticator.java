@@ -40,7 +40,8 @@ public class Authenticator {
 		} catch (FirebaseAuthException e) {
 			log.warn("Invalid JWT token");
 		} finally {
-			FirebaseApp.getInstance().delete();
+			if (uid == null)
+				FirebaseApp.getInstance().delete();
 		}
 		
 		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
@@ -67,6 +68,7 @@ public class Authenticator {
 		} catch (FirebaseAuthException e) {
 			log.warn("Invalid JWT token");
 		} finally {
+			if (userId == null)
 			FirebaseApp.getInstance().delete();
 		}
 		// returns userId from parsing JWT
