@@ -2,6 +2,7 @@ package com.revature.personalfinance.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ import lombok.Data;
 public class Authenticator {
 	
     private static final Logger log = LogManager.getLogger(Authenticator.class);
-    
+    private AuthenticatorUtils authUtil;
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -26,10 +27,15 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return Boolean value indicating if token is authentic
 	 */
-	public static boolean isAuthentic(String jwt) {
+	@Autowired
+	public Authenticator(AuthenticatorUtils injectedAuthUtils){
+		this.authUtil = injectedAuthUtils;
+	}
+
+	public  boolean isAuthentic(String jwt) {
 
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		this.authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
@@ -55,9 +61,9 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return UserId in integer form of user submitting request
 	 */
-	public static String getUserId(String jwt) {
+	public  String getUserId(String jwt) {
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		this.authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
