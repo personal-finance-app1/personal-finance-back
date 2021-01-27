@@ -11,17 +11,10 @@ import com.revature.personalfinance.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * AccountServiceImpl exposes several service related methods related to
- * accounts such as updating expenses and retrieving accounts.
- */
 @Service
 public class AccountServiceImpl implements IAccountService {
 
-	/**
-	 * accountRepo is a spring-data JPA repository which can perform CRUD operations
-	 * on Account objects.
-	 */
+
 	private IAccountRepo accountRepo;
 
 	@Autowired
