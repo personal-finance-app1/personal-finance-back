@@ -37,8 +37,7 @@ public class AuthenticatorTests {
 
 	/**
 	 * Method for testing isAuthentic() with an empty string for JWT
-	 * 
-	 * @throws InterruptedException
+	 *
 	 */
 	@Test
 	public void testIsAuthenticFail2() {
