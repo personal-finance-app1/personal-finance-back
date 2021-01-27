@@ -1,9 +1,5 @@
 package com.revature.personalfinance.service;
 
-import java.io.IOException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -13,30 +9,33 @@ import com.google.firebase.auth.AuthErrorCode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
+
 @Component
 public class AuthenticatorUtils {
 
-    private static final Logger log = LogManager.getLogger(AuthenticatorUtils.class);
-	
+
 	/**
-	 * Method for initializing firebase Admin SDK. 
+	 * Method for initializing firebase Admin SDK
 	 * 
 	 * GoogleCredentials.getApplicationDefault() method looks for credentials at the
 	 * following system env variable: GOOGLE_APPLICATION_CREDENTIALS with a path to
 	 * the tim-gattie-firebase-service-account.json file The fire-base-client config
-	 * file in the src/main/resources folder is simply to provide as thorough an
+	 * file in the src/main/resources folder is simply to provide as throrough an
 	 * access for the Admin SDK being created for the backend as we don't have
 	 * direct database credentials available.
 	 */
-	public  void firebaseInitialize() {
-			FirebaseOptions options = null;
-			try {
-				options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
-			} catch (IOException e) {
-				log.warn("Something went wrong with Firebase initialization");
-			}
+	public void firebaseInitialize() {
+		FirebaseOptions options = null;
+		try {
+			options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
+		} catch (Exception e) {
 
+		}
+		try {
 			FirebaseApp.initializeApp(options);
+		} catch(Exception e) {
+			System.out.println("error");
+		}
 	}
 
 	/**
