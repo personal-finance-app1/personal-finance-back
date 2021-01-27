@@ -77,7 +77,7 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	/**getAllAccountsByUser returns a list of accounts associated with a user.
-	 * @param name the name of the user which to .
+	 * @param userId the name of the user which to .
 	 * @return List<Account> of accounts owned by the user specified by param name.
 	 */
 	@Override
