@@ -18,12 +18,12 @@ public class AuthenticatorUtils {
     private static final Logger log = LogManager.getLogger(AuthenticatorUtils.class);
 	
 	/**
-	 * Method for initializing firebase Admin SDK
+	 * Method for initializing firebase Admin SDK. 
 	 * 
 	 * GoogleCredentials.getApplicationDefault() method looks for credentials at the
 	 * following system env variable: GOOGLE_APPLICATION_CREDENTIALS with a path to
 	 * the tim-gattie-firebase-service-account.json file The fire-base-client config
-	 * file in the src/main/resources folder is simply to provide as throrough an
+	 * file in the src/main/resources folder is simply to provide as thorough an
 	 * access for the Admin SDK being created for the backend as we don't have
 	 * direct database credentials available.
 	 */
