@@ -136,6 +136,8 @@
                     <includes>
                         <include>**/*Spec.*</include>
                         <include>**/*Test.*</include>
+                        <include>**/*Tests.*</include>
+
                     </includes>
                 </configuration>
             </plugin>

@@ -43,7 +43,7 @@ public class AccountControllerTest {
         when(accountService.verifyAccount(account)).thenReturn(true);
         when(mockedAuthenticator.isAuthentic(testJWT)).thenReturn(true);
         when(mockedAuthenticator.isAuthentic(any())).thenReturn(false);
-        when(mockedUtils)
+        //when(mockedUtils)
        
         
     }
