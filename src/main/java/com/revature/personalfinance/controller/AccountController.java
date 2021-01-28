@@ -17,7 +17,7 @@ import com.revature.personalfinance.service.IAccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://ec2-3-229-123-153.compute-1.amazonaws.com")
 public class AccountController {
     
     private final IAccountService accountService;
@@ -41,9 +41,12 @@ public class AccountController {
     public ResponseEntity<Account> updateAccount(@RequestHeader(name = "Authorization") String jwt, @RequestBody Account account) {
         ResponseEntity<Account> returnEntity = ResponseEntity.status(400).body(null);
         Account persistedAccount = null;
-        if(!authenticator.isAuthentic(jwt)) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
+        if(!authenticator.isAuthentic(jwt)) {
+        	log.warn(jwt + "is not a valid token");
+        	return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
         if(this.accountService == null) {
+        	log.error("internal server error when calling updateAccount()");
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
         else if(accountService.verifyAccount(account)){
@@ -68,12 +71,15 @@ public class AccountController {
         String message = String.format("userId: %s", userId);
 
         ResponseEntity<List<Account>> returnEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        if (!authenticator.isAuthentic(jwt)) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
+        if (!authenticator.isAuthentic(jwt)) {
+        	log.warn(jwt + "token is not valid");
+        	return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
         List<Account> returnList = null;
 
 
         if(this.accountService == null) {
+        	log.error("internal error occurred in getAllAccountsByUser()");
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
         else if(userId != null && !userId.equals("")) {

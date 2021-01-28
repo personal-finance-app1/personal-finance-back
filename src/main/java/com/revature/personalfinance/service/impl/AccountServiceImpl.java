@@ -44,6 +44,8 @@ public class AccountServiceImpl implements IAccountService {
 				persistedAccount.setExpenses(account.getExpenses()); // update expenses
 				persistedAccount.setIncome(account.getIncome()); //update income
 				this.accountRepo.save(persistedAccount); // persist updated account
+			}else {
+				log.warn("Account does not exist. The account is "+account);
 			}
 		}
 
@@ -83,6 +85,8 @@ public class AccountServiceImpl implements IAccountService {
 
 		if(userId != null && userId != null && !userId.equals("")){
 			usersAccountList = this.accountRepo.findAllByUserId(userId);
+		}else {
+			log.warn("Invalid user Id");
 		}
 		return usersAccountList;
 	}

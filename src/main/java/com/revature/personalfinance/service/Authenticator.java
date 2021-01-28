@@ -18,7 +18,6 @@ import lombok.Data;
 public class Authenticator {
 
 	private AuthenticatorUtils authUtil = new AuthenticatorUtils();
-
     private static final Logger log = LogManager.getLogger(Authenticator.class);
     
 	/**
