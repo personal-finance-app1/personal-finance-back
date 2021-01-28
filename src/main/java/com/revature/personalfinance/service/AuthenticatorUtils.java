@@ -36,12 +36,12 @@ public class AuthenticatorUtils {
 		try {
 			options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
 		} catch (Exception e) {
-
+			log.warn("Could not set Firebase credentials due to " + e);
 		}
 		try {
 			FirebaseApp.initializeApp(options);
 		} catch(Exception e) {
-			System.out.println("error");
+			log.warn("Could not initialize FirebaseApp due to " + e);
 		}
 	}
 
@@ -64,6 +64,7 @@ public class AuthenticatorUtils {
 			if (e.getAuthErrorCode() == AuthErrorCode.REVOKED_ID_TOKEN) {
 				// Token has been revoked. Inform the user to re-authenticate or signOut() the
 				// user.
+				log.info(jwt + " token was revoked");
 				return true;
 			}
 		}

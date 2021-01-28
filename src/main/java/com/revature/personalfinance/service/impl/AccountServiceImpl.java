@@ -45,7 +45,7 @@ public class AccountServiceImpl implements IAccountService {
 				persistedAccount.setIncome(account.getIncome()); //update income
 				this.accountRepo.save(persistedAccount); // persist updated account
 			}else {
-				log.warn("Account does not exist. The account is "+account);
+				log.warn("Account does not exist. The account is "+account+".");
 			}
 		}
 

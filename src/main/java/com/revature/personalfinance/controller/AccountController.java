@@ -42,7 +42,7 @@ public class AccountController {
         ResponseEntity<Account> returnEntity = ResponseEntity.status(400).body(null);
         Account persistedAccount = null;
         if(!authenticator.isAuthentic(jwt)) {
-        	log.warn(jwt + "is not a valid token");
+        	log.warn(jwt + "is not a valid JWT token");
         	return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         if(this.accountService == null) {
