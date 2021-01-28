@@ -17,7 +17,7 @@ import com.revature.personalfinance.service.IAccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "http://ec2-3-229-123-153.compute-1.amazonaws.com")
+@CrossOrigin(origins = "209.182.247.44")
 public class AccountController {
     
     private final IAccountService accountService;
