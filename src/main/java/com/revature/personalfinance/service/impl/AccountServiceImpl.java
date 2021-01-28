@@ -12,16 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-/**
- * AccountServiceImpl exposes several service related methods related to
- * accounts such as updating expenses and retrieving accounts.
- */
 public class AccountServiceImpl implements IAccountService {
 
-	/**
-	 * accountRepo is a spring-data JPA repository which can perform CRUD operations
-	 * on Account objects.
-	 */
 	private IAccountRepo accountRepo;
 
 	@Autowired
@@ -31,17 +23,15 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	/**
-	 * updateAccountExpenses updates the expenses of an account stored in the
-	 * database.
-	 * 
-	 * @param account the account which we'd like to update which should have all of
+	 * Updates the expenses of an account stored in the database.
+	 * @param account The account which we'd like to update which should have all of
 	 *                the needed information to perform the update.
-	 * @return Account the updated account object.
+	 * @return Returns the updated account object.
 	 */
 	@Override
 	public Account updateAccount(Account account) {
 		Account persistedAccount = null; // acc stored in db
-		
+
 		if (this.accountRepo != null && verifyAccount(account)) {
 			persistedAccount = this.accountRepo.findByAccountId(account.getAccountId()); // get account wrapper
 
@@ -56,8 +46,10 @@ public class AccountServiceImpl implements IAccountService {
 		return persistedAccount;
 	}
 
-	/**Verify account is used to validate any account we'd like to persist in the db by performing sensible
-	 * checks against the values stored in said account. 
+	/**
+	 * Verify account is used to validate any account we'd like to persist in the db by performing sensible
+	 * checks against the values stored in said account.
+	 * @param account The account to be verified.
 	 * @return boolean indicating whether or no the values stored in the account are valid.
 	 */
 	@Override
@@ -76,9 +68,10 @@ public class AccountServiceImpl implements IAccountService {
 		return isNotNull && hasValidName && hasValidNumericalValues;
 	}
 
-	/**getAllAccountsByUser returns a list of accounts associated with a user.
-	 * @param name the name of the user which to .
-	 * @return List<Account> of accounts owned by the user specified by param name.
+	 /**
+	 * Retrieves a list of accounts associated with a user id.
+	 * @param userId the id of the user which to.
+	 * @return List of accounts owned by the user specified by {@code userId}.
 	 */
 	@Override
 	public List<Account> getAllAccountsByUserId(String userId) {

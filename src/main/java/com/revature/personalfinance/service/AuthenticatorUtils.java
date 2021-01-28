@@ -2,6 +2,9 @@ package com.revature.personalfinance.service;
 
 import org.springframework.stereotype.Component;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
