@@ -35,23 +35,24 @@ public class AccountControllerTest {
         when(accountService.verifyAccount(account)).thenReturn(true);
     }
     
+    //NEW JWT HANDLE TOKEN FOR TESTS HELP AHH
     
     @Test
     public void testUpdateAccountSuccess() {
-        ResponseEntity<Account> returnedAccount = accountController.updateAccount(account);
+        ResponseEntity<Account> returnedAccount = accountController.updateAccount("", account);
         assertEquals(account,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
     }
     
     @Test
     public void testUpdateAccountFail() {
         Account badAccount = new Account(1000,"invalid-user","NotInDB",1000,1000);
-		ResponseEntity<Account> returnedAccount = accountController.updateAccount(badAccount);
+		ResponseEntity<Account> returnedAccount = accountController.updateAccount("", badAccount);
         assertNotEquals(account,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
     }
     
     @Test
     public void testUpdateAccountNull() {
-    	ResponseEntity<Account> returnedAccount = accountController.updateAccount(null);
+    	ResponseEntity<Account> returnedAccount = accountController.updateAccount("", null);
         assertEquals(null,objectMapper.convertValue(returnedAccount.getBody(), Account.class));
     }
 }

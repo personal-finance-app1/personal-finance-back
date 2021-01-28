@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import com.revature.personalfinance.model.Account;
+import com.revature.personalfinance.service.Authenticator;
 import com.revature.personalfinance.service.IAccountService;
 
 @RestController
@@ -29,16 +31,22 @@ public class AccountController {
     }
     
     @PatchMapping()
-    public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
+    public ResponseEntity<Account> updateAccount(@RequestHeader("Authorization") String jwt, @RequestBody Account account) {
         ResponseEntity<Account> returnEntity = ResponseEntity.status(400).body(null);
         Account persistedAccount = null;
+        
+        System.out.println(jwt);
 
         if(this.accountService == null) {
             returnEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
         else if(accountService.verifyAccount(account)){
-            persistedAccount = this.accountService.updateAccount(account);
+        	
+            if (Authenticator.isAuthentic(jwt)) {
+            	System.out.println("Hello from inside!");
+                persistedAccount = this.accountService.updateAccount(account);
             
+            }
             if(persistedAccount != null) //updateAccount returns non null if the account was updated, otherwise its still a bad req.
                 returnEntity = ResponseEntity.status(HttpStatus.OK).body(persistedAccount);
         } 
