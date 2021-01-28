@@ -16,9 +16,11 @@ import lombok.Data;
 @Scope("singleton")
 @Data
 public class Authenticator {
+
+	private AuthenticatorUtils authUtil = new AuthenticatorUtils();
 	
-    private static final Logger log = LogManager.getLogger(Authenticator.class);
-    
+	private static final Logger log = LogManager.getLogger();
+
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -26,10 +28,10 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return Boolean value indicating if token is authentic
 	 */
-	public static boolean isAuthentic(String jwt) {
+	public boolean isAuthentic(String jwt) {
 
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
@@ -38,7 +40,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
+			log.warn("Invalid JWT token due to "+e.getClass()+".");
 		} finally {
 			if (uid == null)
 				FirebaseApp.getInstance().delete();
@@ -55,9 +57,9 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return UserId in integer form of user submitting request
 	 */
-	public static String getUserId(String jwt) {
+	public String getUserId(String jwt) {
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
@@ -66,7 +68,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
+			log.warn("Invalid JWT token due to "+e.getClass()+".");
 		} finally {
 			if (userId == null)
 			FirebaseApp.getInstance().delete();

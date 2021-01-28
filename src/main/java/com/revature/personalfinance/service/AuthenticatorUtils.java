@@ -1,6 +1,8 @@
 package com.revature.personalfinance.service;
 
-import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,29 +15,34 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 
+@Component
 public class AuthenticatorUtils {
-
-    private static final Logger log = LogManager.getLogger(AuthenticatorUtils.class);
 	
+	private static final Logger log = LogManager.getLogger();
+
+
 	/**
-	 * Method for initializing firebase Admin SDK. 
+	 * Method for initializing firebase Admin SDK
 	 * 
 	 * GoogleCredentials.getApplicationDefault() method looks for credentials at the
 	 * following system env variable: GOOGLE_APPLICATION_CREDENTIALS with a path to
 	 * the tim-gattie-firebase-service-account.json file The fire-base-client config
-	 * file in the src/main/resources folder is simply to provide as thorough an
+	 * file in the src/main/resources folder is simply to provide as throrough an
 	 * access for the Admin SDK being created for the backend as we don't have
 	 * direct database credentials available.
 	 */
-	public static void firebaseInitialize() {
-			FirebaseOptions options = null;
-			try {
-				options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
-			} catch (IOException e) {
-				log.warn("Something went wrong with Firebase initialization");
-			}
-
+	public void firebaseInitialize() {
+		FirebaseOptions options = null;
+		try {
+			options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
+		} catch (Exception e) {
+			log.warn("Could not set Firebase credentials due to " + e.getClass() + ".");
+		}
+		try {
 			FirebaseApp.initializeApp(options);
+		} catch(Exception e) {
+			log.warn("Could not initialize FirebaseApp due to " + e.getClass() + ".");
+		}
 	}
 
 	/**
@@ -57,6 +64,9 @@ public class AuthenticatorUtils {
 			if (e.getAuthErrorCode() == AuthErrorCode.REVOKED_ID_TOKEN) {
 				// Token has been revoked. Inform the user to re-authenticate or signOut() the
 				// user.
+				
+				log.info("The JWT token was revoked and "+e.getClass()+" was thrown.");
+
 				return true;
 			}
 		}

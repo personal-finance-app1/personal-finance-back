@@ -8,6 +8,8 @@ import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
 import com.revature.personalfinance.service.IAccountService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements IAccountService {
 
 	private IAccountRepo accountRepo;
+	
+	private static final Logger log = LogManager.getLogger();
 
 	@Autowired
 	public AccountServiceImpl(IAccountRepo accountRepo) {
@@ -40,6 +44,8 @@ public class AccountServiceImpl implements IAccountService {
 				persistedAccount.setExpenses(account.getExpenses()); // update expenses
 				persistedAccount.setIncome(account.getIncome()); //update income
 				this.accountRepo.save(persistedAccount); // persist updated account
+			}else {
+				log.warn("Account does not exist. The account is null.");
 			}
 		}
 
@@ -79,6 +85,8 @@ public class AccountServiceImpl implements IAccountService {
 
 		if(userId != null && userId != null && !userId.equals("")){
 			usersAccountList = this.accountRepo.findAllByUserId(userId);
+		}else {
+			log.info("Invalid user Id");
 		}
 		return usersAccountList;
 	}
