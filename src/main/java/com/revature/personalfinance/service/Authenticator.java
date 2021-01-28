@@ -20,7 +20,7 @@ public class Authenticator {
 	private AuthenticatorUtils authUtil = new AuthenticatorUtils();
 	
 	private static final Logger log = LogManager.getLogger();
-    
+
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -40,7 +40,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
+			log.warn("Invalid JWT token due to "+e.getClass()+".");
 		} finally {
 			if (uid == null)
 				FirebaseApp.getInstance().delete();
@@ -68,7 +68,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
+			log.warn("Invalid JWT token due to "+e.getClass()+".");
 		} finally {
 			if (userId == null)
 			FirebaseApp.getInstance().delete();
