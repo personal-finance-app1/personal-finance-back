@@ -8,6 +8,8 @@ import com.revature.personalfinance.model.Account;
 import com.revature.personalfinance.repo.IAccountRepo;
 import com.revature.personalfinance.service.IAccountService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class AccountServiceImpl implements IAccountService {
 	 * on Account objects.
 	 */
 	private IAccountRepo accountRepo;
+	
+	private static final Logger log = LogManager.getLogger();
 
 	@Autowired
 	public AccountServiceImpl(IAccountRepo accountRepo) {

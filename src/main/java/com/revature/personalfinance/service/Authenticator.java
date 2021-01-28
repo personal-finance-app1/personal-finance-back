@@ -1,5 +1,7 @@
 package com.revature.personalfinance.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import lombok.Data;
 public class Authenticator {
 
 	private AuthenticatorUtils authUtil = new AuthenticatorUtils();
+	
+	private static final Logger log = LogManager.getLogger();
 
 	/**
 	 * Method for authenticating token provided in request header and checking
