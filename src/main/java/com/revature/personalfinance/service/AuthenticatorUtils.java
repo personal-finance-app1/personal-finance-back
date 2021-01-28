@@ -1,9 +1,6 @@
 package com.revature.personalfinance.service;
 
-import java.io.IOException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -13,10 +10,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 
+@Component
 public class AuthenticatorUtils {
 
-    private static final Logger log = LogManager.getLogger(AuthenticatorUtils.class);
-	
+
 	/**
 	 * Method for initializing firebase Admin SDK
 	 * 
@@ -27,15 +24,18 @@ public class AuthenticatorUtils {
 	 * access for the Admin SDK being created for the backend as we don't have
 	 * direct database credentials available.
 	 */
-	public static void firebaseInitialize() {
-			FirebaseOptions options = null;
-			try {
-				options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
-			} catch (IOException e) {
-				log.warn("Something went wrong with Firebase initialization");
-			}
+	public void firebaseInitialize() {
+		FirebaseOptions options = null;
+		try {
+			options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault()).build();
+		} catch (Exception e) {
 
+		}
+		try {
 			FirebaseApp.initializeApp(options);
+		} catch(Exception e) {
+			System.out.println("error");
+		}
 	}
 
 	/**

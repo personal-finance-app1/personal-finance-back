@@ -1,11 +1,8 @@
 package com.revature.personalfinance.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -16,9 +13,9 @@ import lombok.Data;
 @Scope("singleton")
 @Data
 public class Authenticator {
-	
-    private static final Logger log = LogManager.getLogger(Authenticator.class);
-    
+
+	private AuthenticatorUtils authUtil = new AuthenticatorUtils();
+
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -26,10 +23,10 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return Boolean value indicating if token is authentic
 	 */
-	public static boolean isAuthentic(String jwt) {
+	public boolean isAuthentic(String jwt) {
 
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
@@ -38,12 +35,9 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
-		} finally {
-			if (uid == null)
-				FirebaseApp.getInstance().delete();
+
 		}
-		
+
 		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
 			return true;
 		return false;
@@ -55,9 +49,9 @@ public class Authenticator {
 	 * @param jwt - JWT contained in request
 	 * @return UserId in integer form of user submitting request
 	 */
-	public static String getUserId(String jwt) {
+	public String getUserId(String jwt) {
 		// Initialize firebase config.
-		AuthenticatorUtils.firebaseInitialize();
+		authUtil.firebaseInitialize();
 
 		// authenticates provided token with Firebase
 		FirebaseToken decodedToken = null;
@@ -66,10 +60,7 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-			log.warn("Invalid JWT token");
-		} finally {
-			if (userId == null)
-			FirebaseApp.getInstance().delete();
+
 		}
 		// returns userId from parsing JWT
 		return String.valueOf(userId);
