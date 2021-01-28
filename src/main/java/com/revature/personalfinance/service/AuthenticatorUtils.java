@@ -64,7 +64,7 @@ public class AuthenticatorUtils {
 			if (e.getAuthErrorCode() == AuthErrorCode.REVOKED_ID_TOKEN) {
 				// Token has been revoked. Inform the user to re-authenticate or signOut() the
 				// user.
-				log.info(jwt + " token was revoked");
+				log.info("jwt token was revoked");
 				return true;
 			}
 		}
