@@ -65,7 +65,6 @@ public class AccountController {
     @GetMapping()
     public ResponseEntity<List<Account>> getAllAccountsByUser(@RequestHeader(name = "Authorization") String jwt){
         String userId = authenticator.getUserId(jwt);
-        String message = String.format("userId: %s", userId);
 
         ResponseEntity<List<Account>> returnEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         if (!authenticator.isAuthentic(jwt)) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
