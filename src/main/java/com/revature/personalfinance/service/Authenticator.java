@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -20,6 +21,9 @@ public class Authenticator {
 	
 	private static final Logger log = LogManager.getLogger();
 
+	
+    private static final Logger log = LogManager.getLogger(Authenticator.class);
+    
 	/**
 	 * Method for authenticating token provided in request header and checking
 	 * revocation status
@@ -39,9 +43,12 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			uid = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-
+			log.warn("Invalid JWT token");
+		} finally {
+			if (uid == null)
+				FirebaseApp.getInstance().delete();
 		}
-
+		
 		if (uid != null && !AuthenticatorUtils.isFirebaseRevoked(jwt))
 			return true;
 		return false;
@@ -64,7 +71,10 @@ public class Authenticator {
 			decodedToken = FirebaseAuth.getInstance().verifyIdToken(jwt);
 			userId = decodedToken.getUid();
 		} catch (FirebaseAuthException e) {
-
+			log.warn("Invalid JWT token");
+		} finally {
+			if (userId == null)
+			FirebaseApp.getInstance().delete();
 		}
 		// returns userId from parsing JWT
 		return String.valueOf(userId);
