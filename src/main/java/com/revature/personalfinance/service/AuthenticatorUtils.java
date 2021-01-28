@@ -1,5 +1,7 @@
 package com.revature.personalfinance.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +17,8 @@ import com.google.firebase.auth.FirebaseToken;
 
 @Component
 public class AuthenticatorUtils {
+	
+	private static final Logger log = LogManager.getLogger();
 
 
 	/**
